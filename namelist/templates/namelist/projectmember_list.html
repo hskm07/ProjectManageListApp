@@ -1,0 +1,30 @@
+{% extends 'namelist/base.html' %} {% block content %}
+<form action="" method="GET" class='mt-3'>
+    {{form}}
+    <button type="submit">検索</button>
+</form>
+<table class="table table-striped mt-5">
+    <thread>
+        <tr>
+            <th>ID</th>
+            <th>Last</th>
+            <th>First</th>
+            <th>Email</th>
+            <th>ProjectTeam</th>
+            <th>Department</th>
+        </tr>
+    </thread>
+    <tbody>
+        {% for projectmember in projectmember_list %}
+        <tr>
+            <td>{{ projectmember.pk }}</td>
+            <td>{{ projectmember.last_name }}</td>
+            <td>{{ projectmember.first_name }}</td>
+            <td>{{ projectmember.email }}</td>
+            <td>{{ projectmember.project }}</td>
+            <td>{% for department in projectmember.department.all %}{{ department }}{% endfor %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include 'namelist/paging_template_new.html' %} {% endblock %}
